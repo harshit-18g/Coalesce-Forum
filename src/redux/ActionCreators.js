@@ -1,10 +1,10 @@
 import * as ActionTypes from './ActionTypes';
 import { ITEMS } from '../shared/items';
 
-export const addComment = (dishId, rating, author, comment) => ({
+export const addComment = (itemId, rating, author, comment) => ({
     type: ActionTypes.ADD_COMMENT,
     payload: {
-        dishId: dishId,
+        itemId: itemId,
         rating: rating,
         author: author,
         comment: comment
@@ -16,7 +16,7 @@ export const fetchItems = () => (dispatch) => {
     dispatch(itemsLoading(true));
 
     setTimeout(() => {
-        dispatch(addDishes(ITEMS));
+        dispatch(addItems(ITEMS));
     }, 2000);
 }
 
@@ -29,7 +29,7 @@ export const itemsFailed = (errmess) => ({
     payload: errmess
 });
 
-export const addDishes = (items) => ({
+export const addItems = (items) => ({
     type: ActionTypes.ADD_ITEMS,
     payload: items
 });
