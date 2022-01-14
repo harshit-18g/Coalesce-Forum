@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+  addComment: (itemId, rating, author, comment) => dispatch(addComment(itemId, rating, author, comment)),
   fetchItems: () => { dispatch(fetchItems())},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))}
 });
@@ -39,10 +39,10 @@ class Main extends Component {
         
     const DishWithId = ({match}) => {
       return(
-          <Detail dish={this.props.items.items.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+          <Detail item={this.props.items.items.filter((item) => item.id === parseInt(match.params.itemId,10))[0]}
             isLoading={this.props.items.isLoading}
             errMess={this.props.items.errMess}
-            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+            comments={this.props.comments.filter((comment) => comment.itemId === parseInt(match.params.itemId,10))}
             addComment={this.props.addComment}
           />
       );
@@ -59,7 +59,7 @@ class Main extends Component {
         <Header />
         <Switch>
             <Route path="/home" component={() => <Menu items={this.props.items} />} />
-            <Route path="/menu/:dishId" component={DishWithId} />
+            <Route path="/menu/:itemId" component={DishWithId} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
             <Redirect to="/home" />
