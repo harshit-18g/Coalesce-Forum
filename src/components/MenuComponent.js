@@ -3,22 +3,22 @@ import { Card, CardImg, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 
-function RenderMenuItem({dish, onClick}){
+function RenderMenuItem({item, onClick}){
     return(
         <Card>
-            <Link style={{textDecoration: 'none', color: 'black'}} to={`/menu/${dish.id}`}>
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
-                <CardTitle><h3 className='m-3'>{dish.name}</h3></CardTitle>
+            <Link style={{textDecoration: 'none', color: 'black'}} to={`/menu/${item.id}`}>
+                <CardImg width="100%" src={item.image} alt={item.name} />
+                <CardTitle><h3 className='m-3'>{item.name}</h3></CardTitle>
             </Link>
         </Card>
     );
 }
 
 const Menu = (props) => {
-    const menu = props.items.items.map((dish) => {
+    const menu = props.items.items.map((item) => {
         return (
-            <div key={dish.id} className="col-12 col-md-5 m-1">
-                <RenderMenuItem dish={dish} />
+            <div key={item.id} className="col-12 col-md-5 m-1">
+                <RenderMenuItem item={item} />
             </div>
           );
     });
